@@ -72,8 +72,6 @@
 				<string>%MUNKI_REPO_SUBDIR%</string>
 				<key>version_comparison_key</key>
 				<string>CFBundleShortVersionString</string>
-                <key>extract_icon</key>
-                <true/>
 			</dict>
 			<key>Processor</key>
 			<string>MunkiImporter</string>
