@@ -3,15 +3,13 @@
 <plist version="1.0">
 <dict>
 	<key>Description</key>
-	<string>Downloads the latest version of Twingate and imports into Munki as a pkg.</string>
+	<string>Downloads the latest version of Symphony and imports into Munki as a pkg.</string>
 	<key>Identifier</key>
-	<string>com.github.ccaviness.munki.Twingate</string>
+	<string>com.github.ccaviness.munki.Symphony</string>
 	<key>Input</key>
 	<dict>
 		<key>MUNKI_REPO_SUBDIR</key>
 		<string>apps/%NAME%</string>
-		<key>NAME</key>
-		<string>Twingate</string>
 		<key>pkginfo</key>
 		<dict>
 			<key>catalogs</key>
@@ -19,13 +17,13 @@
 				<string>testing</string>
 			</array>
 			<key>category</key>
-			<string>Remote Access</string>
+			<string>Productivity</string>
 			<key>description</key>
-			<string>Twingate is the most secure way to provide encrypted, least privileged access to any cloud (AWS, Azure or Google Cloud Platform) or on-premise application or resource. Twingate allows you to secure all access regardless of device platform or network.</string>
+			<string>Symphony: The only secure and compliant collaboration platform built for financial markets &amp; trading teams.</string>
 			<key>developer</key>
-			<string>Twingate</string>
+			<string>Symphony</string>
 			<key>display_name</key>
-			<string>Twingate</string>
+			<string>Symphony</string>
 			<key>minimum_os_version</key>
 			<string>14</string>
 			<key>name</key>
@@ -37,7 +35,7 @@
 	<key>MinimumVersion</key>
 	<string>2.3</string>
 	<key>ParentRecipe</key>
-	<string>com.github.ccaviness.download.Twingate</string>
+	<string>com.github.ccaviness.download.Symphony</string>
 	<key>Process</key>
 	<array>
 		<dict>
@@ -51,11 +49,13 @@
 							<key>CFBundleShortVersionString</key>
 							<string>%version%</string>
 							<key>path</key>
-							<string>/Applications/Twingate.app</string>
+							<string>/Applications/Symphony.app</string>
 							<key>type</key>
 							<string>application</string>
 						</dict>
 					</array>
+                    <key>version</key>
+                    <string>%version%</string>
 				</dict>
 			</dict>
 			<key>Processor</key>
@@ -65,7 +65,7 @@
 			<key>Arguments</key>
 			<dict>
 				<key>pkg_path</key>
-				<string>%RECIPE_CACHE_DIR%/%NAME%-%version%.pkg</string>
+				<string>%pathname%</string>
 				<key>repo_subdirectory</key>
 				<string>%MUNKI_REPO_SUBDIR%</string>
 				<key>version_comparison_key</key>
