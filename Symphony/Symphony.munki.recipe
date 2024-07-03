@@ -10,6 +10,10 @@
 	<dict>
 		<key>MUNKI_REPO_SUBDIR</key>
 		<string>apps/%NAME%</string>
+		<key>NAME</key>
+		<string>Symphony</string>
+		<key>SYMPHONY_POD_URL</key>
+		<string/>
 		<key>pkginfo</key>
 		<dict>
 			<key>catalogs</key>
@@ -30,6 +34,16 @@
 			<string>%NAME%</string>
 			<key>unattended_install</key>
 			<true/>
+			<key>preinstall_script</key>
+			<string>#!/bin/sh
+# Set the POD_URL to the POD_URL value in the recipe, if it is set.
+# See https://support.symphony.com/hc/en-us/articles/360054396791-Silent-install-of-Symphony-MacOS
+POD_URL="%SYMPHONY_POD_URL%"
+if [[ -n "${POD_URL}" ]]; then
+	echo "${POD_URL}" &gt;/tmp/sym_settings.txt
+fi
+exit 0
+        </string>
 		</dict>
 	</dict>
 	<key>MinimumVersion</key>
