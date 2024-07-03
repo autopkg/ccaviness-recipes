@@ -43,7 +43,7 @@ if [[ -n "${POD_URL}" ]]; then
 	echo "${POD_URL}" &gt;/tmp/sym_settings.txt
 fi
 exit 0
-        </string>
+</string>
 		</dict>
 	</dict>
 	<key>MinimumVersion</key>
