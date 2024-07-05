@@ -14,7 +14,7 @@
 	<key>MinimumVersion</key>
 	<string>2.3</string>
 	<key>ParentRecipe</key>
-	<string>com.github.ccaviness.download.Symphony</string>
+	<string>com.github.ccaviness.pkg.Symphony</string>
 	<key>Process</key>
 	<array>
 		<dict>
@@ -22,6 +22,8 @@
 			<dict>
 				<key>pkg_category</key>
 				<string>%CATEGORY%</string>
+				<key>pkg_path</key>
+				<string>%pkg_path%</string>
 			</dict>
 			<key>Processor</key>
 			<string>com.github.grahampugh.jamf-upload.processors/JamfPackageUploader</string>

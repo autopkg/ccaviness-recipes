@@ -34,22 +34,12 @@
 			<string>%NAME%</string>
 			<key>unattended_install</key>
 			<true/>
-			<key>preinstall_script</key>
-			<string>#!/bin/sh
-# Set the POD_URL to the SYMPHONY_POD_URL value in the recipe, if it is set.
-# See https://support.symphony.com/hc/en-us/articles/360054396791-Silent-install-of-Symphony-MacOS
-POD_URL="%SYMPHONY_POD_URL%"
-if [[ -n "${POD_URL}" ]]; then
-	echo "${POD_URL}" &gt;/tmp/sym_settings.txt
-fi
-exit 0
-</string>
 		</dict>
 	</dict>
 	<key>MinimumVersion</key>
 	<string>2.3</string>
 	<key>ParentRecipe</key>
-	<string>com.github.ccaviness.download.Symphony</string>
+	<string>com.github.ccaviness.pkg.Symphony</string>
 	<key>Process</key>
 	<array>
 		<dict>
@@ -79,7 +69,7 @@ exit 0
 			<key>Arguments</key>
 			<dict>
 				<key>pkg_path</key>
-				<string>%pathname%</string>
+				<string>%pkg_path%</string>
 				<key>repo_subdirectory</key>
 				<string>%MUNKI_REPO_SUBDIR%</string>
 				<key>version_comparison_key</key>

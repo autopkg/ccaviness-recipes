@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Description</key>
+	<string>Downloads the latest version of Symphony and imports into Munki as a pkg.
+
+NOTE:
+- This recipe depends on Nick McSpadden's FileAppender.  Add Nick's repo via:
+autopkg repo-add nmcspadden-recipes</string>
+	<key>Identifier</key>
+	<string>com.github.ccaviness.pkg.Symphony</string>
+	<key>Input</key>
+	<dict>
+		<key>SYMPHONY_POD_URL</key>
+		<string/>
+	</dict>
+	<key>MinimumVersion</key>
+	<string>2.3</string>
+	<key>ParentRecipe</key>
+	<string>com.github.ccaviness.download.Symphony</string>
+	<key>Process</key>
+	<array>
+        <dict>
+			<key>Arguments</key>
+			<dict>
+				<key>destination_path</key>
+				<string>%RECIPE_CACHE_DIR%/unpack</string>
+				<key>flat_pkg_path</key>
+				<string>%pathname%</string>
+			</dict>
+			<key>Processor</key>
+			<string>FlatPkgUnpacker</string>
+        </dict>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>file_path</key>
+				<string>%RECIPE_CACHE_DIR%/unpack/%NAME%.pkg/Scripts/preinstall</string>
+				<key>file_content</key>
+				<string>
+# Set the POD_URL to the SYMPHONY_POD_URL value in the recipe, if it is set.
+# See https://support.symphony.com/hc/en-us/articles/360054396791-Silent-install-of-Symphony-MacOS
+POD_URL="%SYMPHONY_POD_URL%"
+if [[ -n "${POD_URL}" ]]; then
+	echo "${POD_URL}" &gt;/tmp/sym_settings.txt
+fi
+exit 0
+</string>
+			</dict>
+			<key>Processor</key>
+			<string>com.github.nmcspadden.shared/FileAppender</string>
+		</dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>pkgroot</key>
+                <string>%RECIPE_CACHE_DIR%/pack</string>
+                <key>pkgdirs</key>
+                <dict/>
+            </dict>
+            <key>Processor</key>
+            <string>PkgRootCreator</string>
+        </dict>
+        <dict>
+			<key>Arguments</key>
+			<dict>
+				<key>destination_pkg</key>
+				<string>%RECIPE_CACHE_DIR%/pack/%NAME%-%version%.pkg</string>
+				<key>source_flatpkg_dir</key>
+				<string>%RECIPE_CACHE_DIR%/unpack</string>
+			</dict>
+			<key>Processor</key>
+			<string>FlatPkgPacker</string>
+		</dict>
+        <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>source_pkg</key>
+                <string>%RECIPE_CACHE_DIR%/pack/%NAME%-%version%.pkg</string>
+            </dict>
+            <key>Processor</key>
+            <string>PkgCopier</string>
+        </dict>
+    </array>
+</dict>
+</plist>
