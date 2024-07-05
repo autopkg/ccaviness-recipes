@@ -36,7 +36,7 @@
 			<true/>
 			<key>preinstall_script</key>
 			<string>#!/bin/sh
-# Set the POD_URL to the POD_URL value in the recipe, if it is set.
+# Set the POD_URL to the SYMPHONY_POD_URL value in the recipe, if it is set.
 # See https://support.symphony.com/hc/en-us/articles/360054396791-Silent-install-of-Symphony-MacOS
 POD_URL="%SYMPHONY_POD_URL%"
 if [[ -n "${POD_URL}" ]]; then
