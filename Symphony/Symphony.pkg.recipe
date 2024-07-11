@@ -5,14 +5,32 @@
 	<key>Description</key>
 	<string>Downloads the latest version of Symphony and imports into Munki as a pkg.
 
-NOTE:
-- This recipe depends on Nick McSpadden's FileAppender.  Add Nick's repo via:
-autopkg repo-add nmcspadden-recipes</string>
+Use the SYMPHONY_ input values to configure Symphony settings. All settings are optional.
+Except for SYMPHONY_POD_URL and SYMPHONY_CONTEXT_ORIGIN_URL, all the other settings are 
+boolean values, but should be entered as strings. (&lt;string&gt;true&lt;/string&gt;)
+See https://support.symphony.com/hc/en-us/articles/360054396791-Silent-install-of-Symphony-MacOS
+</string>
 	<key>Identifier</key>
 	<string>com.github.ccaviness.pkg.Symphony</string>
 	<key>Input</key>
 	<dict>
 		<key>SYMPHONY_POD_URL</key>
+		<string/>
+		<key>SYMPHONY_CONTEXT_ORIGIN_URL</key>
+		<string/>
+		<key>SYMPHONY_MINIMIZE_ON_CLOSE</key>
+		<string/>
+		<key>SYMPHONY_AUTO_START</key>
+		<string/>
+		<key>SYMPHONY_ALWAYS_ON_TOP</key>
+		<string/>
+		<key>SYMPHONY_BRING_TO_FRONT</key>
+		<string/>
+		<key>SYMPHONY_DEV_TOOLS_ENABLED</key>
+		<string/>
+		<key>SYMPHONY_ENABLE_BROWSER_LOGIN</key>
+		<string/>
+		<key>SYMPHONY_BROWSER_LOGIN_AUTOCONNECT</key>
 		<string/>
 	</dict>
 	<key>MinimumVersion</key>
@@ -50,12 +68,18 @@ autopkg repo-add nmcspadden-recipes</string>
 				<string>%RECIPE_CACHE_DIR%/unpack/%NAME%.pkg/Scripts/preinstall</string>
 				<key>file_content</key>
 				<string>#!/bin/bash
-# Set the POD_URL to the SYMPHONY_POD_URL value in the recipe, if it is set.
+# Set the settings from SYMPHONY_ input values in the recipe, if set.
 # See https://support.symphony.com/hc/en-us/articles/360054396791-Silent-install-of-Symphony-MacOS
-POD_URL="%SYMPHONY_POD_URL%"
-if [[ -n "${POD_URL}" ]]; then
-	echo "${POD_URL}" &gt;/tmp/sym_settings.txt
-fi
+echo "%SYMPHONY_POD_URL%" &gt;&gt; /tmp/sym_settings.txt
+echo "%SYMPHONY_CONTEXT_ORIGIN_URL%" &gt;&gt; /tmp/sym_settings.txt
+echo "%SYMPHONY_MINIMIZE_ON_CLOSE%" &gt;&gt; /tmp/sym_settings.txt
+echo "%SYMPHONY_AUTO_START%" &gt;&gt; /tmp/sym_settings.txt
+echo "%SYMPHONY_ALWAYS_ON_TOP%" &gt;&gt; /tmp/sym_settings.txt
+echo "%SYMPHONY_BRING_TO_FRONT%" &gt;&gt; /tmp/sym_settings.txt
+echo "%SYMPHONY_DEV_TOOLS_ENABLED%" &gt;&gt; /tmp/sym_settings.txt
+echo "%SYMPHONY_ENABLE_BROWSER_LOGIN%" &gt;&gt; /tmp/sym_settings.txt
+echo "%SYMPHONY_BROWSER_LOGIN_AUTOCONNECT%" &gt;&gt; /tmp/sym_settings.txt
+
 ./preinstall-original
 </string>
                 <key>file_mode</key>
