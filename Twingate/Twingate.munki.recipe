@@ -3,11 +3,15 @@
 <plist version="1.0">
 <dict>
 	<key>Description</key>
-	<string>Downloads the latest version of Twingate and imports into Munki as a pkg.</string>
+	<string>Downloads the latest version of Twingate and imports into Munki as a pkg.
+
+Set the DERIVE_MIN_OS variable to a non-empty string to set the minimum_os_version via MunkiInstallsItemsCreator. This requires a minimum AutoPkg version of 2.7 please update if you're not already running it.</string>
 	<key>Identifier</key>
 	<string>com.github.ccaviness.munki.Twingate</string>
 	<key>Input</key>
 	<dict>
+		<key>DERIVE_MIN_OS</key>
+		<string>YES</string>
 		<key>MUNKI_REPO_SUBDIR</key>
 		<string>apps/%NAME%</string>
 		<key>NAME</key>
@@ -26,8 +30,6 @@
 			<string>Twingate</string>
 			<key>display_name</key>
 			<string>Twingate</string>
-			<key>minimum_os_version</key>
-			<string>14</string>
 			<key>name</key>
 			<string>%NAME%</string>
 			<key>unattended_install</key>
@@ -35,7 +37,7 @@
 		</dict>
 	</dict>
 	<key>MinimumVersion</key>
-	<string>2.3</string>
+	<string>2.7</string>
 	<key>ParentRecipe</key>
 	<string>com.github.ccaviness.download.Twingate</string>
 	<key>Process</key>
@@ -43,19 +45,29 @@
 		<dict>
 			<key>Arguments</key>
 			<dict>
+				<key>faux_root</key>
+				<string>%RECIPE_CACHE_DIR%</string>
+				<key>derive_minimum_os_version</key>
+				<string>%DERIVE_MIN_OS%</string>
+				<key>installs_item_paths</key>
+				<array>
+					<string>/Applications/Twingate.app</string>
+				</array>
+			</dict>
+			<key>Processor</key>
+			<string>MunkiInstallsItemsCreator</string>
+		</dict>
+		<dict>
+			<key>Processor</key>
+			<string>MunkiPkginfoMerger</string>
+		</dict>
+		<dict>
+			<key>Arguments</key>
+			<dict>
 				<key>additional_pkginfo</key>
 				<dict>
-					<key>installs</key>
-					<array>
-						<dict>
-							<key>CFBundleShortVersionString</key>
-							<string>%version%</string>
-							<key>path</key>
-							<string>/Applications/Twingate.app</string>
-							<key>type</key>
-							<string>application</string>
-						</dict>
-					</array>
+					<key>version</key>
+					<string>%version%</string>
 				</dict>
 			</dict>
 			<key>Processor</key>
@@ -73,6 +85,18 @@
 			</dict>
 			<key>Processor</key>
 			<string>MunkiImporter</string>
+		</dict>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>path_list</key>
+				<array>
+					<string>%RECIPE_CACHE_DIR%/Applications</string>
+					<string>%RECIPE_CACHE_DIR%/expanded</string>
+				</array>
+			</dict>
+			<key>Processor</key>
+			<string>PathDeleter</string>
 		</dict>
 	</array>
 </dict>
