@@ -1,0 +1,6 @@
+{
+    "python.pythonPath": "/Library/AutoPkg",
+    "python.analysis.extraPaths": [
+        "/Library/AutoPkg",
+    ],
+}
