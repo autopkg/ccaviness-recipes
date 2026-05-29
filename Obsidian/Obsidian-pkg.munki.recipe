@@ -43,12 +43,33 @@
     <key>Process</key>
     <array>
         <dict>
+            <key>Arguments</key>
+            <dict>
+                <key>additional_pkginfo</key>
+                <dict>
+                    <key>installs</key>
+                    <array>
+                        <dict>
+                            <key>path</key>
+                            <string>/Applications/Obsidian.app</string>
+                            <key>type</key>
+                            <string>application</string>
+                            <key>CFBundleShortVersionString</key>
+                            <string>%version%</string>
+                        </dict>
+                    </array>
+                </dict>
+            </dict>
+            <key>Processor</key>
+            <string>MunkiPkginfoMerger</string>
+        </dict>
+        <dict>
             <key>Processor</key>
             <string>MunkiImporter</string>
             <key>Arguments</key>
             <dict>
                 <key>pkg_path</key>
-                <string>%pathname%</string>
+                <string>%pkg_path%</string>
                 <key>repo_subdirectory</key>
                 <string>%MUNKI_REPO_SUBDIR%</string>
             </dict>
