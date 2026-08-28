@@ -1,8 +1,8 @@
 repos:
 -   repo: https://github.com/homebysix/pre-commit-macadmin
-    rev: v1.16.2
+    rev: v1.18.0
     hooks:
-    -   id: check-plists
-    -   id: check-autopkg-recipe-list
     -   id: check-autopkg-recipes
         args: ['--recipe-prefix=com.github.ccaviness.', '--strict']
+    -   id: forbid-autopkg-overrides
+    -   id: forbid-autopkg-trust-info
