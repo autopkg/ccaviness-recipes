@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Description</key>
+	<string>Downloads the latest version of OmniGraffle 7, packages it, and imports it into Munki.
+            Based off of com.github.autopkg.munki.omnigraffle7, but targets the pkg recipe instead of the download recipe.
+            APPCAST_URL is set explicitly because the parent derives it from NAME; NAME "OmniGraffle" alone would select the legacy feed, which stops at 7.0.
+    </string>
+	<key>Identifier</key>
+	<string>com.github.ccaviness.munki.OmniGraffle</string>
+	<key>Input</key>
+	<dict>
+		<key>APPCAST_URL</key>
+		<string>https://update.omnigroup.com/appcast/com.omnigroup.OmniGraffle7</string>
+		<key>MUNKI_CATEGORY</key>
+		<string>Productivity</string>
+		<key>MUNKI_REPO_SUBDIR</key>
+		<string>apps/%NAME%</string>
+		<key>NAME</key>
+		<string>OmniGraffle</string>
+		<key>pkginfo</key>
+		<dict>
+			<key>catalogs</key>
+			<array>
+				<string>testing</string>
+			</array>
+			<key>category</key>
+			<string>%MUNKI_CATEGORY%</string>
+			<key>description</key>
+			<string>Need a diagram, process chart, quick page-layout, website wireframe or graphic design? OmniGraffle can help you make eye-popping graphic documents quickly by keeping lines connected to shapes even when they're moved, providing powerful styling tools, importing and exporting Microsoft Visio files, and magically organizing diagrams with just one click. Whether you need a quick sketch or an epic technical figure, OmniGraffle keeps it gorgeously understandable.</string>
+			<key>developer</key>
+			<string>The Omni Group</string>
+			<key>display_name</key>
+			<string>OmniGraffle</string>
+			<key>minimum_os_version</key>
+			<string>14.0</string>
+			<key>name</key>
+			<string>%NAME%</string>
+			<key>unattended_install</key>
+			<true/>
+			<key>unattended_uninstall</key>
+			<true/>
+		</dict>
+	</dict>
+	<key>MinimumVersion</key>
+	<string>2.3</string>
+	<key>ParentRecipe</key>
+	<string>com.github.autopkg.pkg.omnigraffle7</string>
+	<key>Process</key>
+	<array>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>additional_pkginfo</key>
+				<dict>
+					<key>installs</key>
+					<array>
+						<dict>
+							<key>CFBundleShortVersionString</key>
+							<string>%version%</string>
+							<key>path</key>
+							<string>/Applications/OmniGraffle.app</string>
+							<key>type</key>
+							<string>application</string>
+						</dict>
+					</array>
+				</dict>
+			</dict>
+			<key>Processor</key>
+			<string>MunkiPkginfoMerger</string>
+		</dict>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>pkg_path</key>
+				<string>%pkg_path%</string>
+				<key>repo_subdirectory</key>
+				<string>%MUNKI_REPO_SUBDIR%</string>
+			</dict>
+			<key>Processor</key>
+			<string>MunkiImporter</string>
+		</dict>
+	</array>
+</dict>
+</plist>
