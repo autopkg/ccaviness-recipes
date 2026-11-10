@@ -6,7 +6,7 @@
 	<string>Downloads the latest version of Symphony and imports into Munki as a pkg.
 
 Use the SYMPHONY_ input values to configure Symphony settings. All settings are optional.
-Except for SYMPHONY_POD_URL and SYMPHONY_CONTEXT_ORIGIN_URL, all the other settings are 
+Except for SYMPHONY_POD_URL and SYMPHONY_CONTEXT_ORIGIN_URL, all the other settings are
 boolean values, but should be entered as strings. (&lt;string&gt;true&lt;/string&gt;)
 See https://support.symphony.com/hc/en-us/articles/360054396791-Silent-install-of-Symphony-MacOS
 </string>
@@ -14,24 +14,24 @@ See https://support.symphony.com/hc/en-us/articles/360054396791-Silent-install-o
 	<string>com.github.ccaviness.pkg.Symphony</string>
 	<key>Input</key>
 	<dict>
-		<key>SYMPHONY_POD_URL</key>
-		<string/>
-		<key>SYMPHONY_CONTEXT_ORIGIN_URL</key>
-		<string/>
-		<key>SYMPHONY_MINIMIZE_ON_CLOSE</key>
-		<string/>
-		<key>SYMPHONY_AUTO_START</key>
-		<string/>
 		<key>SYMPHONY_ALWAYS_ON_TOP</key>
-		<string/>
+		<string></string>
+		<key>SYMPHONY_AUTO_START</key>
+		<string></string>
 		<key>SYMPHONY_BRING_TO_FRONT</key>
-		<string/>
-		<key>SYMPHONY_DEV_TOOLS_ENABLED</key>
-		<string/>
-		<key>SYMPHONY_ENABLE_BROWSER_LOGIN</key>
-		<string/>
+		<string></string>
 		<key>SYMPHONY_BROWSER_LOGIN_AUTOCONNECT</key>
-		<string/>
+		<string></string>
+		<key>SYMPHONY_CONTEXT_ORIGIN_URL</key>
+		<string></string>
+		<key>SYMPHONY_DEV_TOOLS_ENABLED</key>
+		<string></string>
+		<key>SYMPHONY_ENABLE_BROWSER_LOGIN</key>
+		<string></string>
+		<key>SYMPHONY_MINIMIZE_ON_CLOSE</key>
+		<string></string>
+		<key>SYMPHONY_POD_URL</key>
+		<string></string>
 	</dict>
 	<key>MinimumVersion</key>
 	<string>2.3</string>
@@ -39,7 +39,7 @@ See https://support.symphony.com/hc/en-us/articles/360054396791-Silent-install-o
 	<string>com.github.ccaviness.download.Symphony</string>
 	<key>Process</key>
 	<array>
-        <dict>
+		<dict>
 			<key>Arguments</key>
 			<dict>
 				<key>destination_path</key>
@@ -49,23 +49,21 @@ See https://support.symphony.com/hc/en-us/articles/360054396791-Silent-install-o
 			</dict>
 			<key>Processor</key>
 			<string>FlatPkgUnpacker</string>
-        </dict>
-        <dict>
-            <key>Arguments</key>
-            <dict>
-                <key>source</key>
-                <string>%RECIPE_CACHE_DIR%/unpack/%NAME%.pkg/Scripts/preinstall</string>
-                <key>target</key>
-                <string>%RECIPE_CACHE_DIR%/unpack/%NAME%.pkg/Scripts/preinstall-original</string>
-            </dict>
-            <key>Processor</key>
-            <string>FileMover</string>
-        </dict>
+		</dict>
 		<dict>
 			<key>Arguments</key>
 			<dict>
-				<key>file_path</key>
+				<key>source</key>
 				<string>%RECIPE_CACHE_DIR%/unpack/%NAME%.pkg/Scripts/preinstall</string>
+				<key>target</key>
+				<string>%RECIPE_CACHE_DIR%/unpack/%NAME%.pkg/Scripts/preinstall-original</string>
+			</dict>
+			<key>Processor</key>
+			<string>FileMover</string>
+		</dict>
+		<dict>
+			<key>Arguments</key>
+			<dict>
 				<key>file_content</key>
 				<string>#!/bin/bash
 # Set the settings from SYMPHONY_ input values in the recipe, if set.
@@ -82,24 +80,26 @@ echo "%SYMPHONY_BROWSER_LOGIN_AUTOCONNECT%" &gt;&gt; /tmp/sym_settings.txt
 
 ./preinstall-original
 </string>
-                <key>file_mode</key>
-                <string>0755</string>
+				<key>file_mode</key>
+				<string>0755</string>
+				<key>file_path</key>
+				<string>%RECIPE_CACHE_DIR%/unpack/%NAME%.pkg/Scripts/preinstall</string>
 			</dict>
 			<key>Processor</key>
 			<string>FileCreator</string>
 		</dict>
-        <dict>
-            <key>Arguments</key>
-            <dict>
-                <key>pkgroot</key>
-                <string>%RECIPE_CACHE_DIR%/pack</string>
-                <key>pkgdirs</key>
-                <dict/>
-            </dict>
-            <key>Processor</key>
-            <string>PkgRootCreator</string>
-        </dict>
-        <dict>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>pkgdirs</key>
+				<dict/>
+				<key>pkgroot</key>
+				<string>%RECIPE_CACHE_DIR%/pack</string>
+			</dict>
+			<key>Processor</key>
+			<string>PkgRootCreator</string>
+		</dict>
+		<dict>
 			<key>Arguments</key>
 			<dict>
 				<key>destination_pkg</key>
@@ -110,15 +110,15 @@ echo "%SYMPHONY_BROWSER_LOGIN_AUTOCONNECT%" &gt;&gt; /tmp/sym_settings.txt
 			<key>Processor</key>
 			<string>FlatPkgPacker</string>
 		</dict>
-        <dict>
-            <key>Arguments</key>
-            <dict>
-                <key>source_pkg</key>
-                <string>%RECIPE_CACHE_DIR%/pack/%NAME%-%version%.pkg</string>
-            </dict>
-            <key>Processor</key>
-            <string>PkgCopier</string>
-        </dict>
-    </array>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>source_pkg</key>
+				<string>%RECIPE_CACHE_DIR%/pack/%NAME%-%version%.pkg</string>
+			</dict>
+			<key>Processor</key>
+			<string>PkgCopier</string>
+		</dict>
+	</array>
 </dict>
 </plist>
