@@ -13,7 +13,7 @@
 		<key>NAME</key>
 		<string>Symphony</string>
 		<key>SYMPHONY_POD_URL</key>
-		<string/>
+		<string></string>
 		<key>pkginfo</key>
 		<dict>
 			<key>catalogs</key>
@@ -58,8 +58,8 @@
 							<string>application</string>
 						</dict>
 					</array>
-                    <key>version</key>
-                    <string>%version%</string>
+					<key>version</key>
+					<string>%version%</string>
 				</dict>
 			</dict>
 			<key>Processor</key>
