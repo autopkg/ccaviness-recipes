@@ -21,7 +21,7 @@ You must provide your tenant base URL as CYBERHAVEN_BASE_URL and an API access k
 			<key>Arguments</key>
 			<dict>
 				<key>message</key>
-				<string>This recipe is deprecated; use com.github.hudson-trading.download.RecipeName instead.</string>
+				<string>This recipe is deprecated; use com.github.hudson-trading.download.Cyberhaven instead.</string>
 			</dict>
 			<key>Processor</key>
 			<string>DeprecationWarning</string>
