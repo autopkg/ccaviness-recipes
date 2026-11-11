@@ -44,6 +44,15 @@ In addition to basic messaging WhatsApp users can create groups, send each other
 		<dict>
 			<key>Arguments</key>
 			<dict>
+				<key>message</key>
+				<string>This recipe is deprecated; use com.github.hudson-trading.munki.WhatsApp instead.</string>
+			</dict>
+			<key>Processor</key>
+			<string>DeprecationWarning</string>
+		</dict>
+		<dict>
+			<key>Arguments</key>
+			<dict>
 				<key>additional_pkginfo</key>
 				<dict>
 					<key>installs</key>
