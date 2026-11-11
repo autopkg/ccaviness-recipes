@@ -63,6 +63,15 @@ exit 0
 		<dict>
 			<key>Arguments</key>
 			<dict>
+				<key>message</key>
+				<string>This recipe is deprecated; use com.github.hudson-trading.munki.OktaVerifyNoRelocate instead.</string>
+			</dict>
+			<key>Processor</key>
+			<string>DeprecationWarning</string>
+		</dict>
+		<dict>
+			<key>Arguments</key>
+			<dict>
 				<key>destination_path</key>
 				<string>%RECIPE_CACHE_DIR%/unpack</string>
 				<key>flat_pkg_path</key>
