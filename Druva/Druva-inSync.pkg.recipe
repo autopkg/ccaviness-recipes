@@ -26,6 +26,15 @@
 		<dict>
 			<key>Arguments</key>
 			<dict>
+				<key>message</key>
+				<string>This recipe is deprecated; use com.github.hudson-trading.pkg.Druva-inSync instead.</string>
+			</dict>
+			<key>Processor</key>
+			<string>DeprecationWarning</string>
+		</dict>
+		<dict>
+			<key>Arguments</key>
+			<dict>
 				<key>predicate</key>
 				<string>(INSYNC_CUSTOMIZATION_JSON == nil) OR (INSYNC_CUSTOMIZATION_JSON.length == 0)</string>
 			</dict>
