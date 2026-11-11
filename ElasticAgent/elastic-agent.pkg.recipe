@@ -22,6 +22,15 @@ Set ELASTIC_URL and ELASTIC_ENROLLMENT_TOKEN to configure Elastic Agent enrollme
 		<dict>
 			<key>Arguments</key>
 			<dict>
+				<key>message</key>
+				<string>This recipe is deprecated; use com.github.hudson-trading.pkg.elastic-agent instead.</string>
+			</dict>
+			<key>Processor</key>
+			<string>DeprecationWarning</string>
+		</dict>
+		<dict>
+			<key>Arguments</key>
+			<dict>
 				<key>pattern</key>
 				<string>%pathname%</string>
 			</dict>
