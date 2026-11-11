@@ -21,6 +21,15 @@ Set KIBANA_URL and either KIBANA_API_KEY or KIBANA_USERNAME/KIBANA_PASSWORD. ELA
 	<key>Process</key>
 	<array>
 		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>message</key>
+				<string>This recipe is deprecated; use com.github.hudson-trading.download.elastic-agent instead.</string>
+			</dict>
+			<key>Processor</key>
+			<string>DeprecationWarning</string>
+		</dict>
+		<dict>
 			<key>Processor</key>
 			<string>ElasticFleetVersionResolver</string>
 		</dict>
