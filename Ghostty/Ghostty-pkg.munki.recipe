@@ -37,11 +37,20 @@
 		</dict>
 	</dict>
 	<key>MinimumVersion</key>
-	<string>1.0.4</string>
+	<string>2.0</string>
 	<key>ParentRecipe</key>
 	<string>com.github.autopkg.wardsparadox.pkg.Ghostty</string>
 	<key>Process</key>
 	<array>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>message</key>
+				<string>This recipe is deprecated; use com.github.hudson-trading.munki.Ghostty instead.</string>
+			</dict>
+			<key>Processor</key>
+			<string>DeprecationWarning</string>
+		</dict>
 		<dict>
 			<key>Arguments</key>
 			<dict>
