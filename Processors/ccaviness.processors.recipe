@@ -11,6 +11,16 @@
 	<key>MinimumVersion</key>
 	<string>2.3</string>
 	<key>Process</key>
-	<array/>
+	<array>
+		<dict>
+			<key>Arguments</key>
+			<dict>
+				<key>message</key>
+				<string>These processors are deprecated; use com.github.hudson-trading.processors instead.</string>
+			</dict>
+			<key>Processor</key>
+			<string>DeprecationWarning</string>
+		</dict>
+	</array>
 </dict>
 </plist>
